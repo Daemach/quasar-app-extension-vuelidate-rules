@@ -1,7 +1,8 @@
+import { boot } from 'quasar/wrappers'
 import * as methods from 'vuelidate/lib/validators'
 
-export default ({ Vue }) => {
-  Vue.prototype.$rules = {
+export default boot(({ app }) => {
+  app.config.globalProperties.$rules = { 
     is (value, message) {
       message = message !== undefined ? message : false
       return (val) => {
@@ -88,6 +89,6 @@ export default ({ Vue }) => {
     },
     sameAs(locator, message = false) {
       return (val) => val == locator || message
-    }
+    }  
   }
-}
+})
